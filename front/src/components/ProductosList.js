@@ -16,16 +16,35 @@ export default function ProductosList() {
   ]
 
   const [elements, setElements] = useState([
-    'Orden 1',
-    'Orden 2',
-    'Orden 3',
-    'Orden 4',
-    'Orden 5',
-    'Orden 6',
-    'Orden 7',
-    'Orden 8',
-    'Orden 9',
-    'Orden 10',
+    //los elementos listados son solo un ejemplo, los valores de este state se llenaran con los datos de la db
+    {
+        name: 'Objeto 1',
+        qnty: 10,
+    },
+    {
+        name: 'Objeto 2',
+        qnty: 2,
+    },
+    {
+        name: 'Objeto 3',
+        qnty: 10,
+    },
+    {
+        name: 'Objeto 4',
+        qnty: 15,
+    },
+    {
+        name: 'Objeto 5',
+        qnty: 1,
+    },
+    {
+        name: 'Objeto 6',
+        qnty: 12,
+    },
+    {
+        name: 'Objeto 7',
+        qnty: 5,
+    },
   ])
 
   const [data, setData] = useState('')
@@ -65,8 +84,8 @@ export default function ProductosList() {
                 <div>
                   <div className='conbtnsr'>
                     <FormGroup className='btnsrOS'>
-                      <Input type="radio" value={element} id={element} checked={selected === element} onChange={handleClick} />
-                      <Label for='inv'>{element}</Label>
+                      <Input type="radio" value={element.name} id={element.name} checked={selected === element.name} onChange={handleClick} />
+                      <Label for='inv'>Nombre: {element.name}, Cantidad:  {element.qnty}</Label>
                     </FormGroup>
                   </div>
                 </div>

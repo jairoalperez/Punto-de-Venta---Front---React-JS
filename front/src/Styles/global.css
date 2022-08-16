@@ -51,18 +51,18 @@ body {
     font-weight: bold;
 }
 .btnsrOS{
-    width: 168px;
+    width: 320px;
     align-content: center;
     justify-content: center;
     position: relative;
     padding: 5px;
     text-align: left;
-    font-size: 25px;
+    font-size: 18px;
     float: left;
 }
 .conbtnsr{
     width: 320px;
-    margin-left: 50px;
+    margin-left: 20px;
     margin-top: 20px;
 
 }
