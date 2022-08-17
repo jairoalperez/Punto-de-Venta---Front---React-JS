@@ -8,6 +8,8 @@ import Navigation from './components/Navigation'
 import ProductosList from './components/ProductosList'
 import CrearVenta from './components/CrearVenta'
 import IngresarProducto from './components/IngresarProducto'
+import ServVen from './components/ServVen';
+import CliCom from './components/CliCom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +19,9 @@ root.render(
     <Routes>
       <Route path="/lista" element={<ProductosList/>}/>
       <Route path="/ingresarproducto" element={<IngresarProducto/>}/>
-      <Route path="/vender" element={<CrearVenta/>}/>
+      <Route path="/" element={<CrearVenta/>}/>
+      <Route path="/serven" element={<ServVen/>}/>
+      <Route path="/clicom" element={<CliCom/>}/>
     </Routes>
    </BrowserRouter>
   </React.StrictMode>

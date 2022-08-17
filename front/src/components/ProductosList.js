@@ -1,91 +1,82 @@
 import React, { useState } from 'react'
-import Select from 'react-select'
 import '../Styles/global.css'
-import {FormGroup, Label, Input} from 'reactstrap'
+import { FormGroup, Label, Input } from 'reactstrap'
+import axios from 'axios'
 
 export default function ProductosList() {
 
-  const options = [
-    { value: 1, label: 'Objeto 1' },
-    { value: 2, label: 'Objeto 2' },
-    { value: 3, label: 'Objeto 3' },
-    { value: 4, label: 'Objeto 4' },
-    { value: 5, label: 'Objeto 5' },
-    { value: 6, label: 'Objeto 6' },
-    { value: 7, label: 'Objeto 7' },
-  ]
+  const [elements, setElements] = useState({
+    element: []
+  })
 
-  const [elements, setElements] = useState([
-    //los elementos listados son solo un ejemplo, los valores de este state se llenaran con los datos de la db
-    {
-        name: 'Objeto 1',
-        qnty: 10,
-    },
-    {
-        name: 'Objeto 2',
-        qnty: 2,
-    },
-    {
-        name: 'Objeto 3',
-        qnty: 10,
-    },
-    {
-        name: 'Objeto 4',
-        qnty: 15,
-    },
-    {
-        name: 'Objeto 5',
-        qnty: 1,
-    },
-    {
-        name: 'Objeto 6',
-        qnty: 12,
-    },
-    {
-        name: 'Objeto 7',
-        qnty: 5,
-    },
-  ])
+  const [options, setOptions] = useState(
+    { option: [] })
 
   const [data, setData] = useState('')
 
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState('');
 
   const handleClick = (event) => {
     setSelected(event.target.value)
   }
 
-  const onDropChange = (valueselect) => {
-    setData(valueselect.label)
+  const onDropChange = e => {
+    setData(e.target.value)
   }
 
-  const sendData = (event) => {
-    event.preventDefault();
-    console.log(data)
+  const buscarVentas = () => {
+    const fetchventas = async () => {
+      const res = await axios.get('http://localhost:4000/mostrar-venta/' + data)
+      const datos = res.data
+      setElements({ element: datos })
+    }
+    fetchventas()
   }
+
+  const actOptions = () => {
+    const fetchproductos = async () => {
+      const res = await axios.get('http://localhost:4000/mostrar-producto')
+      const datos = res.data
+      setOptions({ option: datos.map(opt => opt.nombrep) })
+    }
+    fetchproductos()
+
+  }
+
+
 
   return (
     <div className='container'>
       <div className='containerselectser'>
         <div>
-          <h3>Ventas por servicio</h3>
-          <Select
-            className='selectser'
-            placeholder='Seleccionar Servicio'
-            options={options}
-            onChange={onDropChange}
-          />
-          <button className='btnbuscarser' onClick={sendData}>
+          <h1>Ventas por servicio</h1>
+          <button className='btnbuscarser' onClick={actOptions}>
+            Actualizar Opciones
+          </button>
+          <div>
+            <select
+              className='selectser'
+              placeholder='Seleccionar Servicio'
+              onChange={onDropChange}
+            >
+              {
+                options.option.map(opt =>
+                  <option key={opt} value={opt}>{opt}</option>)
+              }
+            </select>
+          </div>
+
+          <button className='btnbuscarser' onClick={buscarVentas}>
             Buscar
           </button>
           <div className='containerOS'>
-            {elements.map(element => {
+            {elements.element.map(elemento => {
               return (
                 <div>
                   <div className='conbtnsr'>
                     <FormGroup className='btnsrOS'>
-                      <Input type="radio" value={element.name} id={element.name} checked={selected === element.name} onChange={handleClick} />
-                      <Label for='inv'>Nombre: {element.name}, Cantidad:  {element.qnty}</Label>
+                      <Input type="radio" value={elemento.idventa.toString()} id={elemento.idventa.toString()} checked={selected === elemento.idventa.toString()} onChange={handleClick} />
+                      <Label for='inv'>ID: {elemento.idventa}, Cliente: {elemento.nombrec}, Monto: ${elemento.monto}</Label>
                     </FormGroup>
                   </div>
                 </div>

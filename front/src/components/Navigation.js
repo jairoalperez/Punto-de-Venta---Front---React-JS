@@ -13,13 +13,16 @@ export default function Navigation() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
-                            <Link className='nav-link' to='/lista'>Lista de Productos</Link>
+                            <Link className='nav-link' to='/lista'>Ventas por Servicio</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className='nav-link' to='/ingresarproducto'>Ingresar Producto</Link>
+                            <Link className='nav-link' to='/ingresarproducto'>Ingresar Servicio</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className='nav-link' to='/vender'>Venta</Link>
+                            <Link className='nav-link' to='/serven'>Servicios Vendidos</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className='nav-link' to='/clicom'>Clientes</Link>
                         </li>
                     </ul>
                 </div>
