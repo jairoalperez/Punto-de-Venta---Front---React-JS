@@ -26,7 +26,9 @@ export default function IngresarProducto() {
       const res = await axios.post('http://localhost:4000/registrar-producto', {
         nombrep: data.nomp,
         valorp: data.valp
-      })
+      },
+      alert('Registro Exitoso')
+      )
       console.log(res)
     }
     ingresarproducto()

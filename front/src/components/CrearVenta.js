@@ -46,7 +46,9 @@ export default function CrearVenta() {
         monto: data.mon,
         productos: [data.serv],
         nombrec: data.nomc
-      })
+      },
+      alert('registro exitoso')
+      )
       console.log(res)
     }
     ingresarproducto()
